@@ -11,5 +11,6 @@ const Article = () => {
             {dummyText}
         </div>
     );
-}
+};
+
 export default Article;

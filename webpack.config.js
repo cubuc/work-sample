@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = {
     mode: "development",
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
@@ -11,9 +11,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.tsx?$/,
+                use: "ts-loader",
                 exclude: /node_modules/,
-                use: ["babel-loader"],
             },
             {
                 test: /\.(jpg|png)$/,
@@ -22,7 +22,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ["*", ".js", ".jsx"],
+        extensions: [".tsx", ".ts", ".js"],
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
     devServer: {

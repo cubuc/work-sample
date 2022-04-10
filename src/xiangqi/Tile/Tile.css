@@ -1,0 +1,11 @@
+.tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.xiangqi-piece {
+    background-size: cover;
+    height: 90%;
+    width: 90%;
+}

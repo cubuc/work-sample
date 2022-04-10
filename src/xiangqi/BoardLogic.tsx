@@ -1,8 +1,6 @@
 import React, { CSSProperties } from "react";
 import { HORIZONTAL_AXIS, initialBoardState, samePosition, VERTICAL_AXIS } from "./Constants";
-import Tile from "./Tile";
-
-import test from "../assets/xiangqi-pieces/advisor.png";
+import Tile from "./Tile/Tile";
 
 interface BoardLogicProps {
     cellSize: number;

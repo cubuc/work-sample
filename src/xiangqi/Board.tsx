@@ -6,9 +6,6 @@ import BoardLogic from "./BoardLogic";
 const xAxis = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
 const yAxis = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-/*
-const lines = [a9i9, a8i8]
-*/
 const Board = () => {
     const cellSize = GRID_SIZE;
 

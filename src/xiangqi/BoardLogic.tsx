@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { HORIZONTAL_AXIS, VERTICAL_AXIS } from "./Constants";
+import { HORIZONTAL_AXIS, initialBoardState, samePosition, VERTICAL_AXIS } from "./Constants";
 import Tile from "./Tile";
 
 import test from "../assets/xiangqi-pieces/advisor.png";
@@ -22,7 +22,9 @@ const BoardLogic = (props: BoardLogicProps) => {
 
     for (let j = VERTICAL_AXIS.length - 1; j >= 0; j--) {
         for (let i = 0; i < HORIZONTAL_AXIS.length; i++) {
-            board.push(<Tile key={`${j},${i}`} image={test} />);
+            const piece = initialBoardState.find((p) => samePosition(p.position, { x: i, y: j }));
+
+            board.push(<Tile key={`${j},${i}`} piece={piece} />);
         }
     }
 

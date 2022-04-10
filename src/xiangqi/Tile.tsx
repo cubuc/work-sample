@@ -1,8 +1,8 @@
 import React from "react";
-import { GRID_SIZE } from "./Constants";
+import { GRID_SIZE, Piece, TeamType } from "./Constants";
 
 interface TileProps {
-    image?: string;
+    piece?: Piece;
 }
 
 const Tile = (props: TileProps) => {
@@ -16,14 +16,16 @@ const Tile = (props: TileProps) => {
                 alignItems: "center",
                 justifyContent: "center",
             }}>
-            {props.image && (
+            {props.piece && (
                 <div
                     style={{
-                        backgroundImage: `url(${props.image})`,
+                        backgroundImage: `url(${props.piece.image})`,
                         width: GRID_SIZE / 1.1,
                         height: GRID_SIZE / 1.1,
                         backgroundSize: "cover",
-                        backgroundPosition: "0px",
+                        backgroundPosition: `${
+                            props.piece.team === TeamType.BLACK ? (GRID_SIZE / 1.1) * -2 : 0
+                        }px`,
                     }}
                     className="xiangqi-piece"></div>
             )}

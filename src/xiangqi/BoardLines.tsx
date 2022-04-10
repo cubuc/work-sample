@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
-
-const xAxis = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
-const yAxis = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+import { HORIZONTAL_AXIS, VERTICAL_AXIS } from "./Constants";
 
 interface BoardLinesProps {
     cellSize: number;
@@ -14,34 +12,37 @@ const BoardLines = (props: BoardLinesProps) => {
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
 
     const offset = cellSize / 2;
-    const canvasWidth = xAxis.length * cellSize;
-    const canvasHeight = yAxis.length * cellSize;
+    const canvasWidth = HORIZONTAL_AXIS.length * cellSize;
+    const canvasHeight = VERTICAL_AXIS.length * cellSize;
 
     const drawHorizontalLines = () => {
         if (contextRef.current) {
-            for (let num of yAxis) {
-                const y = num * cellSize + offset;
-                drawLine([offset, y, canvasWidth - offset, y]);
+            for (let i = 0; i < VERTICAL_AXIS.length; i++) {
+                const y = i * cellSize;
+                drawLine([0, y, canvasWidth - cellSize, y], offset);
             }
         }
     };
 
     const drawVerticalLines = () => {
         if (contextRef.current) {
-            for (let i = 0; i < xAxis.length; i++) {
+            for (let i = 0; i < HORIZONTAL_AXIS.length; i++) {
                 if (i === 0) {
-                    drawLine([offset, offset, offset, canvasHeight - offset]);
-                } else if (i === xAxis.length - 1) {
-                    drawLine([
-                        canvasWidth - offset,
-                        offset,
-                        canvasWidth - offset,
-                        canvasHeight - offset,
-                    ]);
+                    drawLine([0, 0, 0, canvasHeight - cellSize], offset);
+                } else if (i === HORIZONTAL_AXIS.length - 1) {
+                    drawLine(
+                        [
+                            canvasWidth - cellSize,
+                            0,
+                            canvasWidth - cellSize,
+                            canvasHeight - cellSize,
+                        ],
+                        offset
+                    );
                 } else {
-                    const x = i * cellSize + offset;
-                    drawLine([x, offset, x, 4 * cellSize + offset]);
-                    drawLine([x, 5 * cellSize + offset, x, canvasHeight - offset]);
+                    const x = i * cellSize;
+                    drawLine([x, 0, x, 4 * cellSize], offset);
+                    drawLine([x, 5 * cellSize, x, 9 * cellSize], offset);
                 }
             }
         }
